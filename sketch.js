@@ -26,6 +26,7 @@ const yellowIndex = 2;
 const inflateIndex = 3;
 const deflateIndex = 4;
 
+
 // constants for the balloon
 const startEllipseDiameter = 30;
 const poppedEllipseDiameter = 0;
@@ -50,11 +51,13 @@ function preload(){
 // ALWAYS call the setup() funciton for ClickableManager in the setup(), after
 // the class has been allocated in the preload() function.
 function setup() {
-  createCanvas(1280,600);
+  createCanvas(800,600);
+
+
 
   // load the pop sound
   soundFormats('mp3');
-  popSound = loadSound('assets/pop.mp3');
+  popSound = loadSound('assets/drone.mp3');
 
   // setup the clickables = this will allocate the array
   clickables = clickablesManager.setup();
@@ -70,9 +73,10 @@ function setup() {
   console.log(clickables);
 }
 
+
 // Just draw the button
 function draw() {
-  background(128);
+  background(173,228,231);
 
   // draw "balloon"
   drawBalloon();
@@ -117,11 +121,13 @@ clickableButtonPressed = function () {
   else if( this.id === deflateIndex ) {
     ellipseDiameter -= deflateAmount;
     ellipseDiameter = max(minDeflateDiameter,ellipseDiameter);   // prevents < 0
+    popSound.play();
   }
   else if( this.id === inflateIndex ) {
     ellipseDiameter += inflateAmount;
-    if( ellipseDiameter > maxDiameter ) {
-      popBalloon();
+    popSound.play();
+    if( ellipseDiameter > maxDiameter );{ 
+    //  popBalloon();
     }
   }
 }
@@ -168,7 +174,7 @@ function newBalloon(idNum) {
 
 // if we pop the balloon, then you can't re-pop or inflate or deflate
 function popBalloon() {
-  popSound.play();
+ // popSound.play();
 
   ellipseDiameter = poppedEllipseDiameter;
 
