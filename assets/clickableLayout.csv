@@ -1,6 +1,5 @@
 ID,Name,PNGFilename,Text,x,y,visible
-0,lightbulb,assets/lightbulb.png,,500,300,yes
-1,Green,assets/greenBalloon.png,,220,500,yes
-2,Yellow,assets/yellowBalloon.png,,340,500,yes
-3,Inflate,,Left,100,50,yes
-4,Deflate,,Right,300,50,yes
+0, Drone,assets/drone.png,,50, 500, no
+1,Left,,Left,500,300,yes
+2,Right,,Right,340,500,yes
+3,Light,assets/lightbulb.png,,220,500,yes
