@@ -109,6 +109,7 @@ if( this.id === lightIndex ) {
         droneIndex = 0;
     }
 }
+//moving drone left and right 
     else if( this.id === rightIndex ) {
     popSound.play();
     droneX += 15;
@@ -122,19 +123,19 @@ if( this.id === lightIndex ) {
 
 // tint when mouse is over
 clickableButtonHover = function () {
-  this.color = "#ABABCC";
+  this.color = "#57FFC2";
   this.noTint = false;
   this.tint = "#E6E6FA";
 }
 
-// color a light gray if off
+// color a light green if off
 clickableButtonOnOutside = function () {
   // Change colors based on the id #
   if( this.id === leftIndex || this.id === rightIndex || this.id ===lightIndex) {
     this.color = "#E0FFFF";
   }
   else {
-    this.color = "#AAAAAA";
+    this.color = "#57FFC2";
   }
 
   this.noTint = true;
