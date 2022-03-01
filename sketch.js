@@ -20,19 +20,21 @@ var droneImage;
 var dronelightImage;
 var move; 
 
+var droneX = 250;
+var droneY = 100;
+
 // an array of clickable objects
 var clickables;
 
 // indexes into the array (constants)
-const droneIndex = 0;
-const leftIndex = 1;
-const rightIndex = 2;
-const lightIndex = 3;
+const leftIndex = 0;
+const rightIndex = 1;
+const lightIndex = 2;
 
 
-
-// variables for the ballon
-var ellipseDiameter = startEllipseDiameter;
+//drone array
+var droneSwitch = [];
+var droneIndex = 0;
 
 // pop soun
 var popSound;
@@ -53,16 +55,18 @@ function preload(){
 function setup() {
   createCanvas(800,600);
 
+  droneSwitch = [droneImage, dronelightImage];
+    
   // load the pop sound
   soundFormats('mp3');
   popSound = loadSound('assets/drone.mp3');
 
   // setup the clickables = this will allocate the array
   clickables = clickablesManager.setup();
+    
 
-  // call OUR function to setup additional information about the p5.clickables
-  // that are not in the array 
   setupClickables(); 
+
 }
 
 
@@ -78,14 +82,13 @@ function draw() {
 }
 
 function drawDrone() {
-  drawDrone.image = droneImage;
+    image(droneSwitch[droneIndex], droneX, droneY);
 }
 
 // change individual fields of the clickables
 function setupClickables() {
-  clickables[leftIndex].visible = false;
-  clickables[rightIndex].visible = false;
-  // These are the CALLBACK functions. Right now, we do the SAME function for all of the clickables
+//  clickables[leftIndex].visible = true;
+//  clickables[rightIndex].visible = true;
   for( let i = 0; i < clickables.length; i++ ) {
     clickables[i].onPress = clickableButtonPressed;
     clickables[i].onHover = clickableButtonHover;
@@ -97,31 +100,38 @@ function setupClickables() {
 
 clickableButtonPressed = function () {
 // PLAY SOUND WHEN MOVING
-if(this.id === lightIndex ) {
-  drawDrone.image = dronelightImage;
+    
+if( this.id === lightIndex ) {
+    if(droneIndex == 0) {
+        droneIndex = 1;
+    }
+    else {
+        droneIndex = 0;
+    }
 }
-  else if( this.id === rightIndex ) {
+    else if( this.id === rightIndex ) {
     popSound.play();
-    droneImage.x += 5;
+    droneX += 15;
   }
-  else if( this.id === leftIndex ) {
+   else if( this.id === leftIndex ) {
     popSound.play();
-    droneImage.x -= 5;
+    droneX -= 15;
   }
 }
 
+
 // tint when mouse is over
 clickableButtonHover = function () {
-  this.color = "#AA33AA";
+  this.color = "#ABABCC";
   this.noTint = false;
-  this.tint = "#FF0000";
+  this.tint = "#E6E6FA";
 }
 
 // color a light gray if off
 clickableButtonOnOutside = function () {
   // Change colors based on the id #
-  if( this.id === leftIndex || this.id === rightIndex ) {
-    this.color = "#FFFFFF";
+  if( this.id === leftIndex || this.id === rightIndex || this.id ===lightIndex) {
+    this.color = "#E0FFFF";
   }
   else {
     this.color = "#AAAAAA";

@@ -1,5 +1,4 @@
 ID,Name,PNGFilename,Text,x,y,visible
-0, Drone,assets/drone.png,,50, 500, no
-1,Left,,Left,500,300,yes
-2,Right,,Right,340,500,yes
-3,Light,assets/lightbulb.png,,220,500,yes
+0,Left,,Left,200,500,yes
+1,Right,,Right,500,500,yes
+2,Light,assets/lightbulb.png,,350.5,450,yes
